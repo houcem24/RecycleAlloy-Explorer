@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+* Data Visualization - Framework
+* Copyright (C) University of Passau
+*   Faculty of Computer Science and Mathematics
+*   Chair of Cognitive sensor systems
+* Maintenance:
+*   2025, Alexander Gall <alexander.gall@uni-passau.de>
+*
+* RecycleAlloy Explorer - Group 11 (Houssem OUERDIANE & Noor ABOUELHODA)
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecycleAlloy Explorer</title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="dashboard_styles.css">
+
+    <!-- include d3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- include jQueryUI -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!-- PART 1: include dataVis script -->
+    <script src="dataVis.js"></script>
+    <!-- PART 2: include scripts for the dashboard -->
+    <script src="dashboard.js"></script>
+
+</head>
+
+<!-- call init function when page has loaded -->
+<body onload="init()">
+
+<!-- ===== Masthead ===== -->
+<header class="masthead">
+    <div class="mast-left">
+        <div class="mast-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="30" height="30" fill="none"
+                 stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <!-- atomic lattice: a central atom bonded to a hexagonal ring,
+                     evoking an alloy's crystal microstructure -->
+                <circle cx="16" cy="16" r="2.6" fill="#ffffff" stroke="none"/>
+                <circle cx="16" cy="6"  r="2"/>
+                <circle cx="24.7" cy="11" r="2"/>
+                <circle cx="24.7" cy="21" r="2"/>
+                <circle cx="16" cy="26" r="2"/>
+                <circle cx="7.3" cy="21" r="2"/>
+                <circle cx="7.3" cy="11" r="2"/>
+                <path d="M16 8.6 V13.4 M22.9 12 L18.2 14.7 M22.9 20 L18.2 17.3
+                         M16 23.4 V18.6 M9.1 20 L13.8 17.3 M9.1 12 L13.8 14.7"/>
+            </svg>
+        </div>
+        <div class="mast-title">
+            <h1>RecycleAlloy&nbsp;Explorer</h1>
+            <p class="mast-sub">Interactive screening of sustainable aluminium alloys from recycled scrap</p>
+        </div>
+    </div>
+    <div class="mast-right">
+        <span class="mast-badge">6171 Data Visualization &middot; SoSe 2026</span>
+        <span class="mast-badge muted">Group 11 &middot; Houssem Ouerdiane &amp; Noor Abouelhoda</span>
+    </div>
+</header>
+
+<!-- create buttons to select tabs -->
+<nav class="tabbar">
+    <button class="tablink" onclick="openPage('DataLoading', this, '')" id="defaultOpen">1 &middot; Data Loading</button>
+    <button class="tablink" onclick="openPage('Dashboard', this, '')">2 &middot; Dashboard</button>
+</nav>
+
+<!-- Tab 1 -->
+<div id="DataLoading" class="tabcontent">
+    <div class="tab-intro">
+        <h2>Load a dataset</h2>
+        <p>Select the alloy dataset (<code>.csv</code> or tab-separated <code>.txt</code>). The loader detects the
+           delimiter automatically. Once loaded, open the Dashboard tab to explore.</p>
+    </div>
+    <p class="file-row">Select your data here: <input id="upload" type="file"></p>
+    <div id="dataTable"></div>
+</div>
+
+<!-- Basic Visualization (Part 1) has been removed from the delivered app;
+     the Dashboard below is the complete interface. -->
+
+
+<!-- Tab 3 -->
+<div id="Dashboard" class="tabcontent">
+
+    <div class="dash-intro">
+        <h2>Coordinated exploration of the alloy design space</h2>
+        <p>Six linked views share one selection. Pin alloys in the scatter and they appear instantly across the
+           composition ribbon, the mechanical radar, the thermophysical strips, and the comparison. Each plot carries
+           its own controls on top; the global scrap-ratio filters sit at the very top.</p>
+    </div>
+
+    <!-- control bar and the four panels are injected here by dashboard.js -->
+    <div class="dashboardGrid"></div>
+
+</div>
+
+</body>
+</html>
